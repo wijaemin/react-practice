@@ -4,7 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//프로그램 생성 코드
+//대상 html에서 id=root인 항목을 찾아 리액트 앱으로 구성해라!
 const root = ReactDOM.createRoot(document.getElementById('root'));
+//구성한 영역에 다음과 같이 태그를 작성하고 렌더링해라
+//<React StrictMode> 개발에서 쓰는 엄격한 검사용 태그(빌드하면 사라짐)
+//<App/>은 App.js의 내용을 불러와서 태그로 사용하겠다는 의미
 root.render(
   <React.StrictMode>
     <App />
