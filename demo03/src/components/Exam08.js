@@ -15,7 +15,7 @@ const Exam08 = ()=>{
             {/* {names.map(name=><div>{name}</div>)} */}
             {names.map((name,index)=>(
                 <>
-                <div key={index}>{name}</div>
+                <div key={name}>{name}</div>
                 </>
             ))}
         </>
