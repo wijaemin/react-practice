@@ -105,6 +105,16 @@ const Exam10 = ()=>{
         });
         setItems(newItems);
     };
+
+    const deleteItem = (target) =>{
+        //아이템 삭제
+        const newItems= items.filter(item=>item.itemNo !== target.itemNo);
+        setItems(newItems);
+
+        //백업 삭제
+        const newBackup= backup.filter(item=>item.itemNo !== target.itemNo);
+        setBackup(newBackup);
+    };
     return(
         <div className="container-fluid">
             <div className="row">
@@ -168,7 +178,8 @@ const Exam10 = ()=>{
                                             <td>
                                                 <button className="btn btn-sm btn-info" 
                                                         onClick={e=>changeToEdit(item)}>수정</button>
-                                                <button className="btn btn-sm btn-danger">삭제</button>
+                                                <button className="btn btn-sm btn-danger" 
+                                                        onClick={e=>deleteItem(item)}>삭제</button>
                                             </td>
                                         </tr>
 
