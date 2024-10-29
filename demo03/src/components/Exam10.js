@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Modal } from "bootstrap/dist/js/bootstrap.esm";
 
 const Exam10 = ()=>{
@@ -22,6 +22,13 @@ const Exam10 = ()=>{
         itemPrice:"",
         itemType:"",
     });
+
+    //useRef : 특정 대상(태그)을 참조할 수 있는 훅
+    //const 이름 = useRef(초기값);
+    //태그에 ref라는 속성으로 이름을 지정해두면 언제든지 불러서 사용할 수 있다
+    
+
+    const bsModal = useRef();
 
     const changeData = e=>{
         const newData = {
@@ -174,14 +181,28 @@ const Exam10 = ()=>{
 
     //모달 여는 함수
     const openModal = ()=>{
-        var modal =new Modal(document.querySelector("#exampleModal"));
+        // var modal =new Modal(document.querySelector("#exampleModal"));//VanilaJs style
+        var modal = new Modal(bsModal.current);//React style
         modal.show();
     };
 
     //모달 닫기
     const closeModal = ()=>{
-        var modal =Modal.getInstance(document.querySelector("#exampleModal"));
+        // var modal =Modal.getInstance(document.querySelector("#exampleModal"));//VanilaJs style
+        var modal = Modal.getInstance(bsModal.current);//React style
         modal.hide();
+    };
+
+    const closeAddItem = ()=>{
+        //입력창 초기화
+        setData({
+            itemName:"",
+            itemPrice:"",
+            itemType:"",
+        });
+        
+        //모달 닫기
+        closeModal();
     };
     return(
         <div className="container-fluid">
@@ -263,29 +284,55 @@ const Exam10 = ()=>{
                 </div>
             </div>
 
-            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" ref={bsModal} id="exampleModal" 
+                   data-bs-backdrop="static" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                 <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <h5 className="modal-title" id="exampleModalLabel">상품등록</h5>
+                    <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close" onClick={closeAddItem}>
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div className="modal-body">
-                    <input name="itemName" value={data.itemName} onChange={changeData}/>
-                    <input name="itemPrice" value={data.itemPrice} onChange={changeData}/>
-                    <input name="itemType" value={data.itemType} onChange={changeData}/>
-                    <button type="button" className="btn btn-primary" 
-                    onClick={addItem}>추가</button>
+                    <div className="row">
+                        <div className="col">
+                            <label className="form-label">상품명</label>
+                            <input name="itemName" value={data.itemName} onChange={changeData} 
+                                    className="form-control"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <label className="form-label">판매가</label>
+                            <input name="itemPrice" value={data.itemPrice} onChange={changeData} 
+                                    className="form-control"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <label className="form-label">상품분류</label>
+                            <input name="itemType" value={data.itemType} onChange={changeData} 
+                                    className="form-control"/>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-primary">Save changes</button>
+                    {/* 자동으로 닫히게 하는 버튼 */}
+                    {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">취소</button> */}
+
+                    {/* 수동으로 우너하는 로직을 추가하여 닫히게 하는 버튼 */}
+                    <button type="button" className="btn btn-secondary"
+                                            onClick={closeAddItem}>취소</button>
+                    <button type="button" className="btn btn-primary" 
+                                            onClick={addItem}>추가</button>
                 </div>
                 </div>
             </div>
             </div>
+
+
         </div>
     );
 };
