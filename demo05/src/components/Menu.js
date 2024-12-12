@@ -6,7 +6,7 @@ const Menu = (props)=>{
     console.log(location.pathname);
     return(
         <>
-            <nav className="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+            <nav className="navbar navbar-expand-lg bg-light fixed-top" data-bs-theme="light">
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">Hello</NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
