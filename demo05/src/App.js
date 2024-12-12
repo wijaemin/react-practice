@@ -2,15 +2,14 @@ import { NavLink, Route, Routes } from "react-router";
 import Pocketmon from "./components/Pocketmon";
 import Book from "./components/Book";
 import Home from "./components/Home";
+import Menu from "./components/Menu";
 
 function App() {
   return (
     <div className="container-fluid">
       {/* 상단 메뉴 영역 */}
       <div>
-        <NavLink to="/">홈</NavLink>
-        <NavLink to="/pocketmon">포켓몬</NavLink>
-        <NavLink to="/book">도서</NavLink>
+        <Menu/>
       </div>
 
 
