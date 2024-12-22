@@ -12,7 +12,7 @@ const Book = (props)=>{
     // const loadBook =()=>{
     //     //서버에 있는 도서 정보를 불러와서 state에 반영하는 코드
     //     axios({
-    //         url:"http://localhost:8080/book/",
+    //         url:"${process.env.REACT_APP_REST_API_URL}/book/",
     //         method:"get",
     //     })
     //     .then(response=>{
@@ -25,7 +25,7 @@ const Book = (props)=>{
 
     const loadBook = async()=>{
         const response =await axios({
-            url:"http://localhost:8080/book/",
+            url:`${process.env.REACT_APP_REST_API_URL}/book/`,
             method:"get",
         });
         setBookList(response.data);
@@ -41,7 +41,7 @@ const Book = (props)=>{
         if(choice === false) return;
 
         axios({
-            url:`http://localhost:8080/book/${book.bookId}`,
+            url:`${process.env.REACT_APP_REST_API_URL}/book/${book.bookId}`,
             method:"delete"
         })
         .then(response=>{
@@ -83,7 +83,7 @@ const Book = (props)=>{
 
     // const saveBook = ()=>{
     //     axios({
-    //         url:"http://localhost:8080/book/",
+    //         url:`${process.env.REACT_APP_REST_API_URL}/book/`,
     //         method:"post",
     //         data:book,
     //     })
@@ -99,7 +99,7 @@ const Book = (props)=>{
 
     const saveBook = async() =>{
         const response= await axios({
-            url:"http://localhost:8080/book/",
+            url:`${process.env.REACT_APP_REST_API_URL}/book/`,
             method:"post",
             data:book,
         });
@@ -118,7 +118,7 @@ const Book = (props)=>{
     //     const copyBook={...book};
     //     delete copyBook.bookId;
     //     axios({
-    //         url:`http://localhost:8080/${book.bookId}`,
+    //         url:`${process.env.REACT_APP_REST_API_URL}/${book.bookId}`,
     //         method:"put",
     //         data:copyBook
     //     })
@@ -133,7 +133,7 @@ const Book = (props)=>{
         const copyBook={...book};
         delete copyBook.bookId;
         const response = await axios({
-            url:`http://localhost:8080/${book.bookId}`,
+            url:`${process.env.REACT_APP_REST_API_URL}/${book.bookId}`,
             method:"put",
             data:copyBook
         });
