@@ -1,9 +1,8 @@
 import { NavLink, useLocation } from "react-router";
-import "bootstrap/dist/js/bootstrap.js";
 
 const Menu = (props)=>{
     const location = useLocation(); 
-    console.log(location.pathname);
+    // console.log(location.pathname);
     return(
         <>
             <nav className="navbar navbar-expand-lg bg-light fixed-top" data-bs-theme="light">
