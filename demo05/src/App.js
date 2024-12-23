@@ -3,6 +3,7 @@ import Pocketmon from "./components/Pocketmon";
 import Book from "./components/Book";
 import Home from "./components/Home";
 import Menu from "./components/Menu";
+import PocketmonInfinite from "./components/PocketmonInfinite";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/" element={<Home/>}></Route>
             <Route path="/pocketmon" element={<Pocketmon/>}></Route>
             <Route path="/book" element={<Book/>}></Route>
+            <Route path="/pocketmon2" element={<PocketmonInfinite/>}></Route>
           </Routes>
         </div>
       </div>
